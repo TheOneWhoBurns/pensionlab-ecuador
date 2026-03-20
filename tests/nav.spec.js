@@ -22,6 +22,8 @@ test.describe('Navigation', () => {
   });
 
   test('CTA button scrolls to form section', async ({ page }) => {
+    const vw = page.viewportSize().width;
+    test.skip(vw < 768, 'CTA hidden on mobile');
     await page.locator('.nav .btn-gold').first().click();
     await page.waitForTimeout(600);
     const formSection = page.locator('#formularios');

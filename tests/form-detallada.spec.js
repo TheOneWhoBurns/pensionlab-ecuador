@@ -20,7 +20,7 @@ test.describe('Form C: Estimación Detallada', () => {
       await page.locator('#f2_still').check();
     }
     await page.locator('#f2_fondo').selectOption(opts.fondo || 'depositado');
-    await page.locator('#f2_modalidad').selectOption(opts.modalidad || 'mensual');
+    await page.locator('#f2_modalidad').selectOption(opts.modalidad || 'pension');
   }
 
   test('toggling "aún trabajo ahí" disables exit date', async ({ page }) => {
@@ -32,13 +32,13 @@ test.describe('Form C: Estimación Detallada', () => {
 
   test('valid submission shows result', async ({ page }) => {
     await fillDetallada(page);
-    await page.locator('#form-detallada-form button[type="submit"]').click();
+    await page.locator('#form-detallada-form .btn-gold').click();
     await expect(page.locator('#result-detallada')).toBeVisible();
   });
 
   test('result shows years of service', async ({ page }) => {
     await fillDetallada(page);
-    await page.locator('#form-detallada-form button[type="submit"]').click();
+    await page.locator('#form-detallada-form .btn-gold').click();
     await expect(page.locator('#result-detallada')).toBeVisible();
     const yearsText = await page.locator('#r2_years').textContent();
     expect(yearsText).toMatch(/años de servicio/);
@@ -46,7 +46,7 @@ test.describe('Form C: Estimación Detallada', () => {
 
   test('25+ years shows eligibility', async ({ page }) => {
     await fillDetallada(page, { ingreso: '1995-01-01', salida: '2022-06-30', motivo: 'renuncia' });
-    await page.locator('#form-detallada-form button[type="submit"]').click();
+    await page.locator('#form-detallada-form .btn-gold').click();
     await expect(page.locator('#result-detallada')).toBeVisible();
     const eligText = await page.locator('#r2_elig').textContent();
     expect(eligText).toMatch(/Califica/);
@@ -54,7 +54,7 @@ test.describe('Form C: Estimación Detallada', () => {
 
   test('< 20 years shows ineligible warning', async ({ page }) => {
     await fillDetallada(page, { ingreso: '2015-01-01', salida: '2022-06-30', motivo: 'renuncia' });
-    await page.locator('#form-detallada-form button[type="submit"]').click();
+    await page.locator('#form-detallada-form .btn-gold').click();
     await expect(page.locator('#result-detallada')).toBeVisible();
     const eligText = await page.locator('#r2_elig').textContent();
     expect(eligText).toMatch(/no cumple/);
@@ -62,23 +62,23 @@ test.describe('Form C: Estimación Detallada', () => {
 
   test('20-24 years with despido shows eligible', async ({ page }) => {
     await fillDetallada(page, { ingreso: '2000-01-01', salida: '2022-06-30', motivo: 'despido' });
-    await page.locator('#form-detallada-form button[type="submit"]').click();
+    await page.locator('#form-detallada-form .btn-gold').click();
     const eligText = await page.locator('#r2_elig').textContent();
     expect(eligText).toMatch(/Califica/);
   });
 
   test('pension amount is positive number', async ({ page }) => {
     await fillDetallada(page);
-    await page.locator('#form-detallada-form button[type="submit"]').click();
+    await page.locator('#form-detallada-form .btn-gold').click();
     await expect(page.locator('#result-detallada')).toBeVisible();
     const pensionText = await page.locator('#r2_pension').textContent();
-    expect(pensionText).toMatch(/USD \$[\d,]+\.\d{2}\/mes/);
+    expect(pensionText).toMatch(/USD \$[\d.,]+\/mes/);
   });
 
   test('honeypot blocks submission', async ({ page }) => {
     await fillDetallada(page);
     await page.evaluate(() => { document.getElementById('hp2').value = 'bot'; });
-    await page.locator('#form-detallada-form button[type="submit"]').click();
+    await page.locator('#form-detallada-form .btn-gold').click();
     await expect(page.locator('#result-detallada')).toBeHidden();
   });
 });

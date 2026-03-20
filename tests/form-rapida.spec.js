@@ -8,7 +8,7 @@ test.describe('Form B: Estimación Rápida', () => {
   });
 
   test('submit without fields shows validation errors', async ({ page }) => {
-    await page.locator('#form-rapida-form button[type="submit"]').click();
+    await page.locator('#form-rapida-form .btn-gold').click();
     const errorFields = page.locator('#form-rapida-form .error');
     await expect(errorFields.first()).toBeVisible();
   });
@@ -18,7 +18,7 @@ test.describe('Form B: Estimación Rápida', () => {
     await page.locator('#f1_wa').fill('+593987654321');
     await page.locator('#f1_years').fill('25');
     await page.locator('#f1_salary').fill('1000');
-    await page.locator('#form-rapida-form button[type="submit"]').click();
+    await page.locator('#form-rapida-form .btn-gold').click();
     await expect(page.locator('#result-rapida')).toBeVisible();
     const range = await page.locator('#r1_range').textContent();
     expect(range).toMatch(/USD \$/);
@@ -29,7 +29,7 @@ test.describe('Form B: Estimación Rápida', () => {
     await page.locator('#f1_wa').fill('+593900000001');
     await page.locator('#f1_years').fill('25');
     await page.locator('#f1_salary').fill('1000');
-    await page.locator('#form-rapida-form button[type="submit"]').click();
+    await page.locator('#form-rapida-form .btn-gold').click();
     await expect(page.locator('#result-rapida')).toBeVisible();
     const r = await page.evaluate(() => {
       var low  = 1000 * 25 * 0.30 + 0.05 * 12000 * 25;
@@ -45,7 +45,7 @@ test.describe('Form B: Estimación Rápida', () => {
     await page.locator('#f1_wa').fill('+593900000001');
     await page.locator('#f1_years').fill('0');
     await page.locator('#f1_salary').fill('1000');
-    await page.locator('#form-rapida-form button[type="submit"]').click();
+    await page.locator('#form-rapida-form .btn-gold').click();
     await expect(page.locator('#result-rapida')).toBeHidden();
   });
 });

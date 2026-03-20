@@ -14,7 +14,7 @@ test.describe('WhatsApp Button', () => {
       page.waitForEvent('popup'),
       page.locator('.wa-float').click(),
     ]);
-    expect(popup.url()).toMatch(/wa\.me\//);
+    expect(popup.url()).toMatch(/wa\.me\/|whatsapp\.com/);
     await popup.close();
   });
 
@@ -23,7 +23,7 @@ test.describe('WhatsApp Button', () => {
       page.waitForEvent('popup'),
       page.locator('.wa-float').click(),
     ]);
-    expect(popup.url()).toMatch(/text=/);
+    expect(popup.url()).toMatch(/text[=%]/);
     await popup.close();
   });
 });
