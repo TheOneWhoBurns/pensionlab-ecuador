@@ -28,6 +28,6 @@ test.describe('Mobile Layout', () => {
   });
 
   test('WhatsApp button is visible on mobile', async ({ page }) => {
-    await expect(page.locator('.whatsapp-btn')).toBeVisible();
+    await expect(page.locator('.wa-float')).toBeVisible();
   });
 });
