@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PensionLab Ecuador — Jubilación Patronal | Consulta Gratuita</title>
+  <meta name="description" content="Único estudio jurídico con experiencia actuarial del Ecuador. Especialistas en jubilación patronal Art. 216 Código del Trabajo. Consulta gratuita.">
+  <meta property="og:title" content="PensionLab Ecuador — Su jubilación es un derecho, no un favor">
+  <meta property="og:description" content="Especialistas en jubilación patronal. ¿20+ años con el mismo empleador? Verifique su derecho ahora. Consulta gratuita.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="img/logo-standalone.png">
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- SIDEBAR OVERLAY -->
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">Pension<span>Lab</span></div>
+    <button class="sidebar-close" onclick="closeSidebar()">&#x2715;</button>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Formularios</div>
+    <button class="sidebar-link form-link" onclick="scrollTo('form-rapida')">
+      <span class="sidebar-link-dot"></span> Estimación Rápida
+    </button>
+    <button class="sidebar-link form-link" onclick="scrollTo('form-detallada')">
+      <span class="sidebar-link-dot"></span> Estimación Detallada
+    </button>
+    <button class="sidebar-link form-link" onclick="scrollTo('form-caso')">
+      <span class="sidebar-link-dot"></span> Enviar Mi Caso
+    </button>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Información</div>
+    <button class="sidebar-link" onclick="scrollTo('eligibility')">¿Califico?</button>
+    <button class="sidebar-link" onclick="scrollTo('servicios')">Servicios</button>
+    <button class="sidebar-link" onclick="scrollTo('proceso')">Proceso</button>
+    <button class="sidebar-link" onclick="scrollTo('honorarios')">Honorarios</button>
+    <button class="sidebar-link" onclick="scrollTo('contacto')">Contacto</button>
+  </div>
+
+  <button class="sidebar-wa" onclick="openWhatsApp('sidebar')">WhatsApp directo</button>
+</aside>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-left">
+    <button class="hamburger" onclick="toggleSidebar()" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="#" class="nav-logo">
+      <svg width="32" height="40" viewBox="0 0 80 100" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="58" width="14" height="36" rx="2" fill="#C5D8EC"/>
+        <rect x="22" y="44" width="14" height="50" rx="2" fill="#8AAECE"/>
+        <rect x="40" y="30" width="14" height="64" rx="2" fill="#4A7AB5"/>
+        <rect x="58" y="18" width="14" height="76" rx="2" fill="#1A4A8A"/>
+        <path d="M4 54 Q40 8 75 16" fill="none" stroke="#B8860B" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="75" cy="16" r="4.5" fill="#B8860B"/>
+        <line x1="0" y1="96" x2="80" y2="96" stroke="#2A4A7A" stroke-width="1"/>
+      </svg>
+      <div class="nav-wordmark">Pension<span>Lab</span></div>
+    </a>
+  </div>
+  <button class="btn-gold" style="padding:10px 22px;font-size:11px;" onclick="scrollTo('form-rapida')">Verificar Mi Derecho</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="hero-geo" viewBox="0 0 320 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMaxYMin meet">
+    <polygon points="320,0 320,400 80,400" fill="rgba(184,134,11,0.04)"/>
+    <polygon points="320,0 320,280 180,280" fill="rgba(184,134,11,0.06)"/>
+    <line x1="80" y1="400" x2="320" y2="0" stroke="rgba(184,134,11,0.12)" stroke-width="1"/>
+    <circle cx="320" cy="200" r="120" fill="none" stroke="rgba(184,134,11,0.05)" stroke-width="1"/>
+    <circle cx="320" cy="200" r="80" fill="none" stroke="rgba(184,134,11,0.05)" stroke-width="0.5"/>
+  </svg>
+  <div class="hero-badge">Jubilación Patronal &middot; Ecuador &middot; Art. 216</div>
+  <h1 class="hero-title">Su jubilación es un<br><span>derecho, no un favor.</span></h1>
+  <p class="hero-sub">Somos el único estudio jurídico con experiencia actuarial del Ecuador, especializado en reclamar y negociar los valores de jubilación patronal que su empleador está obligado a reconocerle por ley.</p>
+  <div class="hero-ctas">
+    <button class="btn-gold" onclick="scrollTo('form-rapida')">Verificar Mi Derecho &rarr;</button>
+    <button class="btn-wa" onclick="openWhatsApp('hero')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.522 5.857L0 24l6.335-1.652A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.82c-1.91 0-3.72-.51-5.32-1.47l-.38-.23-3.96 1.04 1.06-3.86-.25-.4A9.8 9.8 0 012.18 12c0-5.42 4.4-9.82 9.82-9.82 5.42 0 9.82 4.4 9.82 9.82 0 5.42-4.4 9.82-9.82 9.82z"/></svg>
+      WhatsApp
+    </button>
+  </div>
+</section>
+
+<!-- ELIGIBILITY -->
+<section class="eligibility reveal" id="eligibility">
+  <div class="section-label">Elegibilidad &middot; ¿Le corresponde a usted?</div>
+  <h2 class="eleg-head">El beneficio aplica con el mismo empleador.</h2>
+  <p class="eleg-sub">El derecho a jubilación patronal se activa cuando los años de servicio son con un mismo empleador, en dos supuestos distintos según el Código del Trabajo:</p>
+  <div class="eleg-grid">
+    <div class="eleg-item reveal reveal-d1">
+      <div class="eleg-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+      <div>
+        <div class="eleg-title">20 años con el mismo empleador &mdash; despido intempestivo</div>
+        <div class="eleg-desc">Si acumuló 20 o más años trabajando para la misma empresa y fue despedido de forma intempestiva, la ley le reconoce el derecho a jubilación patronal desde el momento del despido.</div>
+        <span class="eleg-tag">Art. 216 &middot; Código del Trabajo</span>
+      </div>
+    </div>
+    <div class="eleg-item reveal reveal-d2">
+      <div class="eleg-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+      <div>
+        <div class="eleg-title">25 años con el mismo empleador &mdash; cualquier desvinculación</div>
+        <div class="eleg-desc">Si trabajó 25 o más años para la misma empresa, tiene derecho a jubilación patronal independientemente de cómo terminó la relación laboral: renuncia, jubilación voluntaria o acuerdo.</div>
+        <span class="eleg-tag">Art. 216 &middot; Código del Trabajo</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM 1: Estimación Rápida -->
+<section class="form-section" id="form-rapida">
+  <div class="form-inner">
+    <div class="form-badge">Formulario 1 de 3</div>
+    <h2 class="form-head">Estimación <span>Rápida</span></h2>
+    <p class="form-intro">Ingrese sus datos básicos y obtenga en segundos un rango estimado de su jubilación patronal. Le contactaremos dentro de las 48 horas.</p>
+
+    <form id="form-rapida-form" novalidate>
+      <div class="form-block">
+        <div class="form-row cols2">
+          <div class="fgroup">
+            <label>Nombre completo</label>
+            <input type="text" id="f1_name" required placeholder="Sus nombres y apellidos">
+          </div>
+          <div class="fgroup">
+            <label>WhatsApp</label>
+            <input type="tel" id="f1_wa" required placeholder="+593 99 000 0000">
+          </div>
+        </div>
+        <div class="form-row cols2">
+          <div class="fgroup">
+            <label>Años con este empleador</label>
+            <input type="number" id="f1_years" required min="1" max="60" placeholder="Ej: 22">
+          </div>
+          <div class="fgroup">
+            <label>Salario mensual aprox. (USD)</label>
+            <input type="number" id="f1_salary" required min="1" step="0.01" placeholder="Ej: 1200">
+          </div>
+        </div>
+        <div class="honeypot"><input type="text" id="hp1" tabindex="-1" autocomplete="off"></div>
+      </div>
+      <button type="button" class="btn-gold" style="width:100%;justify-content:center;" onclick="submitRapida(event)">
+        Calcular Mi Estimación &rarr;
+      </button>
+      <p class="form-note">Estimación referencial. No constituye asesoría legal.</p>
+    </form>
+
+    <div class="result-panel" id="result-rapida">
+      <div class="result-label">Su jubilación patronal podría estar entre</div>
+      <div class="result-range" id="r1_range">—</div>
+      <div class="result-disclaimer">Estimación referencial basada en datos aproximados. No constituye asesoría legal.</div>
+      <div class="result-actions">
+        <button class="btn-gold" onclick="scrollTo('form-detallada')">Obtener estimación más precisa &rarr;</button>
+        <button class="btn-outline-wa" onclick="openWhatsApp('result1')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.522 5.857L0 24l6.335-1.652A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.82c-1.91 0-3.72-.51-5.32-1.47l-.38-.23-3.96 1.04 1.06-3.86-.25-.4A9.8 9.8 0 012.18 12c0-5.42 4.4-9.82 9.82-9.82 5.42 0 9.82 4.4 9.82 9.82 0 5.42-4.4 9.82-9.82 9.82z"/></svg>
+          Hablar por WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM 2: Estimación Detallada -->
+<section class="form-section" id="form-detallada">
+  <div class="form-inner">
+    <div class="form-badge">Formulario 2 de 3</div>
+    <h2 class="form-head">Estimación <span>Detallada</span></h2>
+    <p class="form-intro">Con sus fechas exactas y datos laborales calculamos el monto preciso de su jubilación patronal en ambas modalidades: fondo global y pensión mensual.</p>
+
+    <form id="form-detallada-form" novalidate>
+      <div class="form-block">
+        <div class="form-block-title">Datos personales</div>
+        <div class="form-row cols2">
+          <div class="fgroup">
+            <label>Salario mensual (USD)</label>
+            <input type="number" id="f2_salary" required min="1" step="0.01" placeholder="Ej: 1200">
+          </div>
+          <div class="fgroup">
+            <label>Fecha de nacimiento</label>
+            <input type="date" id="f2_dob" required>
+          </div>
+        </div>
+        <div class="form-row cols2">
+          <div class="fgroup">
+            <label>Sexo</label>
+            <select id="f2_sexo" required>
+              <option value="">Seleccione...</option>
+              <option value="M">Masculino</option>
+              <option value="F">Femenino</option>
+            </select>
+          </div>
+          <div class="fgroup">
+            <label>Nombre del empleador</label>
+            <input type="text" id="f2_employer" required placeholder="Razón social de la empresa">
+          </div>
+        </div>
+      </div>
+      <div class="form-block">
+        <div class="form-block-title">Datos laborales</div>
+        <div class="form-row cols2">
+          <div class="fgroup">
+            <label>Fecha de ingreso</label>
+            <input type="date" id="f2_ingreso" required>
+          </div>
+          <div class="fgroup">
+            <label>Fecha de salida</label>
+            <input type="date" id="f2_salida" required>
+          </div>
+        </div>
+        <div class="checkbox-row">
+          <input type="checkbox" id="f2_still" onchange="toggleStillWorking()">
+          <label for="f2_still">Aún trabajo ahí</label>
+        </div>
+        <div class="form-row cols2" style="margin-top:12px;">
+          <div class="fgroup">
+            <label>Motivo de salida</label>
+            <select id="f2_motivo" required>
+              <option value="">Seleccione...</option>
+              <option value="despido">Despido intempestivo</option>
+              <option value="renuncia">Renuncia voluntaria</option>
+              <option value="acuerdo">Acuerdo mutuo</option>
+              <option value="jubilacion">Jubilación voluntaria</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+          <div class="fgroup">
+            <label>Fondo de reserva</label>
+            <select id="f2_fondo" required>
+              <option value="">Seleccione...</option>
+              <option value="depositado">Depositado en IESS</option>
+              <option value="mensual">Pagado mensualmente</option>
+              <option value="nose">No sé</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="fgroup">
+            <label>Modalidad preferida</label>
+            <select id="f2_modalidad">
+              <option value="nose">No sé aún</option>
+              <option value="pension">Pensión mensual vitalicia</option>
+              <option value="global">Fondo global — pago único</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="btn-gold" style="width:100%;justify-content:center;" onclick="submitDetallada(event)">
+        Calcular Estimación Detallada &rarr;
+      </button>
+      <p class="form-note">Estimación referencial. No constituye asesoría legal.</p>
+    </form>
+
+    <div class="result-panel" id="result-detallada">
+      <div class="result-label" id="r2_years">—</div>
+      <div id="r2_elig" style="font-size:13px;font-weight:700;margin:8px 0;"></div>
+      <div class="result-modalities">
+        <div class="mod-card">
+          <div class="mod-label">Fondo global (pago único)</div>
+          <div class="mod-value" id="r2_global">—</div>
+          <div class="mod-desc">Monto total estimado en un solo pago</div>
+        </div>
+        <div class="mod-card featured">
+          <div class="mod-label">Pensión mensual vitalicia</div>
+          <div class="mod-value" id="r2_pension">—</div>
+          <div class="mod-desc">Ingreso mensual estimado de por vida</div>
+        </div>
+      </div>
+      <div class="result-disclaimer">Estimación referencial. El cálculo definitivo requiere análisis actuarial completo. No constituye asesoría legal.</div>
+      <div class="result-actions">
+        <button class="btn-gold" onclick="scrollTo('form-caso')">Enviar mi caso completo &rarr;</button>
+        <button class="btn-outline-wa" onclick="openWhatsApp('result2')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.522 5.857L0 24l6.335-1.652A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.82c-1.91 0-3.72-.51-5.32-1.47l-.38-.23-3.96 1.04 1.06-3.86-.25-.4A9.8 9.8 0 012.18 12c0-5.42 4.4-9.82 9.82-9.82 5.42 0 9.82 4.4 9.82 9.82 0 5.42-4.4 9.82-9.82 9.82z"/></svg>
+          Hablar por WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM 3: Enviar Mi Caso -->
+<section class="form-section" id="form-caso">
+  <div class="form-inner">
+    <div class="form-badge">Formulario 3 de 3</div>
+    <h2 class="form-head">Enviar <span>Mi Caso</span></h2>
+    <p class="form-intro">Evaluación completa de su caso. Un especialista analizará su información y le contactará en menos de 48 horas con un dictamen preliminar gratuito.</p>
+
+    <div id="form-caso-fields">
+      <form id="form-caso-form" novalidate>
+        <div class="form-block">
+          <div class="form-block-title">Datos de identificación</div>
+          <div class="form-row cols2">
+            <div class="fgroup">
+              <label>Cédula de identidad</label>
+              <input type="text" id="f3_cedula" required maxlength="10" placeholder="0000000000">
+            </div>
+            <div class="fgroup">
+              <label>Correo electrónico</label>
+              <input type="email" id="f3_email" required placeholder="correo@ejemplo.com">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="fgroup">
+              <label>RUC del empleador</label>
+              <input type="text" id="f3_ruc" required maxlength="13" placeholder="0000000000001">
+            </div>
+          </div>
+        </div>
+        <div class="form-block">
+          <div class="form-block-title">Remuneraciones — últimos 5 años (valores mensuales)</div>
+          <p class="form-note" style="margin-top:0;margin-bottom:14px;">Valores aproximados en USD. Si no recuerda el dato exacto, ingrese un estimado.</p>
+          <div id="f3_years"></div>
+        </div>
+        <div class="form-block">
+          <div class="form-block-title">Documentos disponibles</div>
+          <div class="form-row cols2">
+            <div class="fgroup">
+              <label>Contrato de trabajo</label>
+              <select id="f3_contrato">
+                <option value="">Seleccione...</option>
+                <option value="si">Sí, disponible</option>
+                <option value="no">No lo tengo</option>
+                <option value="parcial">Parcialmente</option>
+              </select>
+            </div>
+            <div class="fgroup">
+              <label>Roles de pago</label>
+              <select id="f3_roles">
+                <option value="">Seleccione...</option>
+                <option value="todos">Sí, todos</option>
+                <option value="algunos">Algunos años</option>
+                <option value="no">No los tengo</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row cols2">
+            <div class="fgroup">
+              <label>Aviso de salida del empleador</label>
+              <select id="f3_aviso">
+                <option value="">Seleccione...</option>
+                <option value="si">Sí</option>
+                <option value="no">No</option>
+              </select>
+            </div>
+            <div class="fgroup">
+              <label>Acta de finiquito</label>
+              <select id="f3_finiquito">
+                <option value="">Seleccione...</option>
+                <option value="si">Sí</option>
+                <option value="no">No</option>
+                <option value="sin_copia">Firmé pero no tengo copia</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn-gold" style="width:100%;justify-content:center;" onclick="submitCaso(event)">
+          Enviar Mi Caso &rarr;
+        </button>
+        <p class="form-note">Sus datos son confidenciales y se usarán únicamente para evaluar su caso. No compartimos información con terceros.</p>
+      </form>
+    </div>
+
+    <div class="result-panel" id="result-caso">
+      <div class="complete-box">
+        <h3>Caso enviado exitosamente</h3>
+        <p>Gracias por confiar en PensionLab Ecuador. Un especialista revisará su información y le contactará en un plazo máximo de 48 horas por WhatsApp o correo electrónico.</p>
+        <button class="btn-outline-wa" onclick="openWhatsApp('complete')" style="margin:0 auto;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.522 5.857L0 24l6.335-1.652A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.82c-1.91 0-3.72-.51-5.32-1.47l-.38-.23-3.96 1.04 1.06-3.86-.25-.4A9.8 9.8 0 012.18 12c0-5.42 4.4-9.82 9.82-9.82 5.42 0 9.82 4.4 9.82 9.82 0 5.42-4.4 9.82-9.82 9.82z"/></svg>
+          Escribirnos por WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATISTICS -->
+<section class="stats-section reveal" id="estadisticas">
+  <div class="section-label">Resultados concretos &middot; Lo intangible hecho visible</div>
+  <h2 class="stats-head">Transformamos años de trabajo en valores reales.</h2>
+  <p class="stats-sub">Nuestro equipo combina conocimiento jurídico y pericia actuarial para calcular con precisión los valores que le corresponden y maximizar su beneficio.</p>
+  <div class="stats-row">
+    <div class="stat-card reveal reveal-d1">
+      <div class="stat-num" data-target="25" data-suffix=" / 20">25 / 20</div>
+      <div class="stat-label">Años con el mismo empleador que activan el beneficio según el supuesto</div>
+      <div class="stat-detail">Art. 216 — Código del Trabajo</div>
+    </div>
+    <div class="stat-card reveal reveal-d2">
+      <div class="stat-num" data-target="0" data-prefix="$">$0</div>
+      <div class="stat-label">Costo de la consulta inicial — evaluamos su elegibilidad sin cargo</div>
+      <div class="stat-detail">Conozca su situación antes de decidir</div>
+    </div>
+    <div class="stat-card reveal reveal-d3">
+      <div class="stat-num" data-target="100" data-suffix="%">100%</div>
+      <div class="stat-label">Especialización en jubilación patronal con respaldo actuarial</div>
+      <div class="stat-detail">Único enfoque, máxima pericia</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section reveal" id="servicios">
+  <div class="section-label">Servicios &middot; Lo que hacemos</div>
+  <h2 class="services-head">Dos caminos, un solo objetivo: cobrar lo suyo.</h2>
+  <p class="services-sub">Evaluamos su caso y determinamos cuál modalidad maximiza su beneficio.</p>
+  <div class="services-grid">
+    <div class="service-card reveal reveal-d1">
+      <div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <div class="service-name">Pensión mensual vitalicia</div>
+      <div class="service-desc">Negociamos y demandamos el pago de una pensión fija mensual de por vida, indexada a su última remuneración y ajustada conforme a los índices del INEC.</div>
+      <span class="service-tag">Ingreso permanente</span>
+    </div>
+    <div class="service-card reveal reveal-d2">
+      <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="3" y="10" width="18" height="11" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/></svg></div>
+      <div class="service-name">Fondo global &mdash; pago único</div>
+      <div class="service-desc">Calculamos el valor total de su jubilación patronal y lo reclamamos en un solo pago. Metodología actuarial propia para maximizar el resultado.</div>
+      <span class="service-tag">Cobro inmediato</span>
+    </div>
+    <div class="service-card reveal reveal-d3">
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+      <div class="service-name">Liquidación técnica actuarial</div>
+      <div class="service-desc">Elaboramos la liquidación actuarial completa con tabla de mortalidad, tasas técnicas y proyección de beneficios como evidencia ante el juez.</div>
+      <span class="service-tag">Sustento técnico</span>
+    </div>
+    <div class="service-card reveal reveal-d4">
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <div class="service-name">Negociación extrajudicial</div>
+      <div class="service-desc">Gestionamos acuerdos directos con el empleador y su representante legal para alcanzar valores justos sin litigio, ahorrando tiempo y costos.</div>
+      <span class="service-tag">Resolución ágil</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section reveal" id="proceso">
+  <div class="section-label">Proceso &middot; Transparencia total</div>
+  <h2 class="process-head">Usted siempre sabe en qué etapa está su caso.</h2>
+  <p class="process-sub">Visualizar el proceso es parte de nuestra promesa de servicio.</p>
+  <div class="steps">
+    <div class="step reveal"><div class="step-num">1</div><div><div class="step-title">Consulta y evaluación de elegibilidad</div><div class="step-desc">Verificamos si aplica el supuesto de 25 años (cualquier desvinculación) o el de 20 años con despido intempestivo y le entregamos una estimación preliminar.</div><div class="step-time">Sin costo &middot; 48 horas</div></div></div>
+    <div class="step reveal"><div class="step-num">2</div><div><div class="step-title">Firma del contrato e inicio formal</div><div class="step-desc">Suscribimos el contrato de servicios, se establece el honorario de apertura y comenzamos la recopilación documental y la liquidación actuarial.</div><div class="step-time">Inicio del proceso</div></div></div>
+    <div class="step reveal"><div class="step-num">3</div><div><div class="step-title">Liquidación técnica y documental</div><div class="step-desc">Recolectamos contratos y roles de pago. Elaboramos la liquidación actuarial que sustentará la demanda o la negociación con el empleador.</div><div class="step-time">1 a 2 semanas</div></div></div>
+    <div class="step reveal"><div class="step-num">4</div><div><div class="step-title">Notificación y negociación con el empleador</div><div class="step-desc">Enviamos comunicación formal al empleador. En muchos casos se llega a un acuerdo en esta fase, sin necesidad de litigio.</div><div class="step-time">2 a 6 semanas</div></div></div>
+    <div class="step reveal"><div class="step-num">5</div><div><div class="step-title">Acción judicial si no hay acuerdo</div><div class="step-desc">Presentamos la demanda ante el Tribunal de lo Laboral competente, con toda la documentación y prueba técnica lista desde el inicio.</div><div class="step-time">Proceso formal</div></div></div>
+    <div class="step reveal"><div class="step-num">6</div><div><div class="step-title">Cobro efectivo y cierre</div><div class="step-desc">Ejecutamos la sentencia o acuerdo, supervisamos el pago íntegro y entregamos el finiquito jurídico del proceso.</div><div class="step-time">Resultado tangible</div></div></div>
+  </div>
+</section>
+
+<!-- FEE -->
+<section class="fee-section reveal" id="honorarios">
+  <div class="section-label">Honorarios &middot; Transparencia desde el inicio</div>
+  <h2 class="fee-head">Claridad total sobre lo que invierte.</h2>
+  <p class="fee-sub">Creemos que usted merece saber exactamente cómo funciona nuestra estructura de cobro antes de firmar cualquier documento. Sin sorpresas, sin letra pequeña.</p>
+  <div class="fee-grid">
+    <div class="fee-card reveal reveal-d1">
+      <div class="fee-card-label">Paso 1 &middot; Antes de todo</div>
+      <div class="fee-card-title">Consulta inicial gratuita</div>
+      <div class="fee-card-desc">Analizamos su historial laboral, determinamos si le corresponde el beneficio y le entregamos una estimación preliminar. Sin costo, sin compromiso, sin condiciones.</div>
+      <span class="fee-badge">Sin costo</span>
+    </div>
+    <div class="fee-card featured reveal reveal-d2">
+      <div class="fee-card-label">Paso 2 &middot; Al iniciar el proceso</div>
+      <div class="fee-card-title">Honorario de apertura + participación en resultados</div>
+      <div class="fee-card-desc">Honorario inicial que cubre la gestión técnica y la liquidación actuarial, más un porcentaje acordado sobre los valores efectivamente cobrados al final del proceso.</div>
+      <span class="fee-badge">Estructura mixta</span>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust-section reveal" id="confianza">
+  <div class="section-label">Confianza &middot; Por qué elegirnos</div>
+  <h2 class="trust-head">La confianza se construye con evidencia.</h2>
+  <p class="trust-sub">En servicios jurídicos, usted no puede "probar" el servicio antes de comprarlo. Nosotros lo resolvemos así:</p>
+  <div class="trust-grid">
+    <div class="trust-item reveal reveal-d1"><div class="trust-dot"></div><div><div class="trust-item-title">Experiencia actuarial única en Ecuador</div><div class="trust-item-desc">Somos el único estudio que combina abogacía laboral con metodología actuarial, lo que nos permite calcular y defender montos técnicamente superiores.</div></div></div>
+    <div class="trust-item reveal reveal-d2"><div class="trust-dot"></div><div><div class="trust-item-title">Estructura de honorarios justa</div><div class="trust-item-desc">Un fee inicial que cubre el arranque técnico del caso, más una participación en los valores obtenidos. Nuestro éxito está atado al suyo.</div></div></div>
+    <div class="trust-item reveal reveal-d3"><div class="trust-dot"></div><div><div class="trust-item-title">Comunicación continua</div><div class="trust-item-desc">Reportes periódicos del estado de su caso. Usted nunca queda sin respuesta ni tiene que perseguir a su abogado.</div></div></div>
+    <div class="trust-item reveal reveal-d4"><div class="trust-dot"></div><div><div class="trust-item-title">Contrato claro y vinculante</div><div class="trust-item-desc">Todo queda por escrito: honorarios, plazos, obligaciones y causales de terminación. Sin sorpresas ni cargos ocultos.</div></div></div>
+    <div class="trust-item reveal"><div class="trust-dot"></div><div><div class="trust-item-title">Confidencialidad garantizada</div><div class="trust-item-desc">Su información personal y laboral está protegida bajo la Ley Orgánica de Protección de Datos Personales del Ecuador.</div></div></div>
+    <div class="trust-item reveal"><div class="trust-dot"></div><div><div class="trust-item-title">Respaldo en jurisprudencia vigente</div><div class="trust-item-desc">Trabajamos con los últimos fallos de la Corte Nacional de Justicia y los criterios del Ministerio del Trabajo, actualizados permanentemente.</div></div></div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-block reveal">
+  <span class="quote-mark">&ldquo;</span>
+  <p class="quote-text">Usted trabajó décadas construyendo el patrimonio de su empleador. La ley ecuatoriana le garantiza una retribución por eso. Nosotros nos encargamos de que la reciba.</p>
+  <span class="quote-source">PensionLab Ecuador &middot; Único estudio jurídico con experiencia actuarial del Ecuador</span>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section reveal" id="contacto">
+  <div class="section-label">Contáctenos &middot; También puede escribirnos directamente</div>
+  <h2 class="contact-head">¿Prefiere hablar con un especialista?<br><span>Estamos disponibles para usted.</span></h2>
+  <p class="contact-sub">Si prefiere atención directa antes de llenar el formulario, contáctenos por cualquiera de estos canales y un especialista le atenderá en menos de 24 horas.</p>
+  <div class="contact-grid">
+    <div class="contact-item"><div class="contact-label">Teléfono / WhatsApp</div><div class="contact-val">+593 99 000 0000</div></div>
+    <div class="contact-item"><div class="contact-label">Correo electrónico</div><div class="contact-val">contacto@pensionlab.ec</div></div>
+    <div class="contact-item"><div class="contact-label">Dirección</div><div class="contact-val">Quito, Ecuador</div></div>
+    <div class="contact-item"><div class="contact-label">Atención</div><div class="contact-val">Lunes a viernes &middot; 09h00&ndash;18h00</div></div>
+  </div>
+  <button class="btn-gold" onclick="scrollTo('form-rapida')">Verificar Mi Derecho Ahora &rarr;</button>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <span class="footer-copy">&copy; 2026 PensionLab Ecuador &middot; Único estudio jurídico con experiencia actuarial del Ecuador</span>
+  <div class="footer-links">
+    <a href="#">Política de privacidad</a>
+    <a href="#">Términos de uso</a>
+  </div>
+  <span class="footer-legal">Los valores calculados son estimaciones referenciales. Cada caso es único. Esta página no constituye asesoría legal.</span>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<button class="wa-float" onclick="openWhatsApp('floating')" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.522 5.857L0 24l6.335-1.652A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.82c-1.91 0-3.72-.51-5.32-1.47l-.38-.23-3.96 1.04 1.06-3.86-.25-.4A9.8 9.8 0 012.18 12c0-5.42 4.4-9.82 9.82-9.82 5.42 0 9.82 4.4 9.82 9.82 0 5.42-4.4 9.82-9.82 9.82z"/></svg>
+</button>
+
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookie-banner">
+  <div class="cookie-text">
+    Utilizamos cookies para analizar el tráfico y mejorar su experiencia. Al hacer clic en "Aceptar" consiente el uso de cookies analíticas conforme a la <a href="#">Ley Orgánica de Protección de Datos Personales</a> del Ecuador.
+  </div>
+  <div class="cookie-actions">
+    <button class="cookie-accept" onclick="acceptCookies()">Aceptar</button>
+    <button class="cookie-reject" onclick="rejectCookies()">Solo esenciales</button>
+  </div>
+</div>
+
+<script src="js/tracking.js"></script>
+<script src="js/cookie-consent.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
