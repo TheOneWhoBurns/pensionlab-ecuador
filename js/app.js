@@ -13,15 +13,22 @@ function coef(age, sex) {
   var t = mortalityCoef[sex] || mortalityCoef.M;
   return t[Math.min(80, Math.max(55, age))] || 150;
 }
-function usd(val) {
-  return 'USD $' + val.toLocaleString('es-EC', {minimumFractionDigits:2, maximumFractionDigits:2});
+function usd(n) {
+  return 'USD $' + n.toLocaleString('es-EC', {minimumFractionDigits:2, maximumFractionDigits:2});
 }
 function yearsBetween(d1, d2) {
   return Math.max(0, (d2 - d1) / (365.25 * 864e5));
 }
 function el(id) { return document.getElementById(id); }
-function setText(id, val) { el(id).textContent = val; }
+function setText(id, v) { el(id).textContent = v; }
 function val(id) { return el(id).value; }
+function isHoneypot(hpId) { return el(hpId) && el(hpId).value; }
+function saveLead(tier, data) {
+  Object.assign(leadData, data);
+  localStorage.setItem('pl_lead_t' + tier, JSON.stringify(leadData));
+  console.log('[PensionLab] Tier', tier, data);
+  if (typeof trackLead === 'function') trackLead(data);
+}
 
 /* ── Calculators ── */
 function calcRapida(years, salary) {
@@ -57,29 +64,44 @@ function validate(id) {
   return ok;
 }
 
-function validateField(id, regex) {
-  var f = el(id);
-  var ok = regex.test(f.value.trim());
-  f.classList.toggle('error', !ok);
-  return ok;
-}
-
-function save(tier, data) {
-  Object.assign(leadData, data);
-  localStorage.setItem('pl_lead_t' + tier, JSON.stringify(leadData));
-  console.log('[PensionLab] Tier', tier, data);
-}
-
 function showResult(id) {
   var panel = el(id);
-  panel.style.display = 'block';
-  panel.style.overflow = 'hidden';
-  panel.style.transition = 'max-height 0.6s ease';
-  panel.style.maxHeight = '0';
+  panel.style.cssText += ';display:block;overflow:hidden;transition:max-height 0.6s ease;max-height:0';
   requestAnimationFrame(function() {
     panel.style.maxHeight = panel.scrollHeight + 'px';
+    panel.addEventListener('transitionend', function handler() {
+      panel.removeEventListener('transitionend', handler);
+      panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+    });
   });
-  setTimeout(function() { panel.scrollIntoView({behavior:'smooth', block:'nearest'}); }, 100);
+}
+
+/* ── Form version switcher ── */
+var VERSION_CFG = [
+  { form: 'form-minima',    sb: 'sb-a' },
+  { form: 'form-rapida',    sb: 'sb-b' },
+  { form: 'form-detallada', sb: 'sb-c' }
+];
+var currentVersion = null;
+var demoNavBtns = null;
+
+function initVersion(id) {
+  currentVersion = id;
+  VERSION_CFG.forEach(function(v) {
+    var s = el(v.form);
+    if (s) s.style.display = v.form === id ? '' : 'none';
+    var sb = el(v.sb);
+    if (sb) sb.classList.toggle('active', v.form === id);
+  });
+  if (demoNavBtns) demoNavBtns.forEach(function(btn, i) { btn.classList.toggle('active', VERSION_CFG[i].form === id); });
+}
+
+function switchVersion(id) {
+  if (id === currentVersion) { closeSidebar(); return; }
+  initVersion(id);
+  closeSidebar();
+  var target = el('formularios');
+  if (target) target.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
 /* ── Sidebar ── */
@@ -91,7 +113,7 @@ function setSidebar(open) {
 function toggleSidebar() { setSidebar(!el('sidebar').classList.contains('open')); }
 function closeSidebar()   { setSidebar(false); }
 
-function scrollTo(id) {
+function jumpTo(id) {
   closeSidebar();
   var target = el(id);
   if (target) target.scrollIntoView({behavior:'smooth', block:'start'});
@@ -103,23 +125,29 @@ function openWhatsApp(src) {
   window.open('https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(WHATSAPP_MSG), '_blank');
 }
 
-/* ── Form 1: Estimación Rápida ── */
+/* ── Form A: Captura Mínima ── */
+function submitMinima() {
+  if (!validate('form-minima-form') || isHoneypot('hp0')) return;
+  var data = { name: val('fa_name').trim(), whatsapp: val('fa_wa').trim() };
+  saveLead(1, data);
+  showResult('result-minima');
+}
+
+/* ── Form B: Estimación Rápida ── */
 function submitRapida(e) {
   e.preventDefault();
-  if (!validate('form-rapida-form')) return;
-  if (el('hp1') && el('hp1').value) return;
+  if (!validate('form-rapida-form') || isHoneypot('hp1')) return;
   var years  = parseFloat(val('f1_years'))  || 0;
   var salary = parseFloat(val('f1_salary')) || 0;
   if (years < 1 || salary < 1) return;
   var data = { name: val('f1_name').trim(), whatsapp: val('f1_wa').trim(), years: years, salary: salary };
-  save(1, data);
-  if (typeof trackLead === 'function') trackLead(data);
+  saveLead(1, data);
   var r = calcRapida(years, salary);
   setText('r1_range', usd(r.low) + ' — ' + usd(r.high));
   showResult('result-rapida');
 }
 
-/* ── Form 2: Estimación Detallada ── */
+/* ── Form C: Estimación Detallada ── */
 function toggleStillWorking() {
   var checked = el('f2_still').checked;
   ['f2_salida', 'f2_motivo'].forEach(function(id) {
@@ -134,7 +162,7 @@ function toggleStillWorking() {
 
 function submitDetallada(e) {
   e.preventDefault();
-  if (!validate('form-detallada-form')) return;
+  if (!validate('form-detallada-form') || isHoneypot('hp2')) return;
   var data = {
     salary:     parseFloat(val('f2_salary')) || leadData.salary || 1000,
     dob:        val('f2_dob'),
@@ -147,69 +175,20 @@ function submitDetallada(e) {
     fondo:      val('f2_fondo'),
     modalidad:  val('f2_modalidad')
   };
-  save(2, data);
-  if (typeof trackFormStep2 === 'function') trackFormStep2({employer: data.employer});
+  Object.assign(leadData, data);
+  localStorage.setItem('pl_lead_t2', JSON.stringify(leadData));
+  console.log('[PensionLab] Tier 2', data);
+  if (typeof trackFormStep2 === 'function') trackFormStep2({employerName: data.employer});
   var r = calcDetallada(data);
-  var elig = el('r2_elig');
-  elig.textContent = r.eligible
+  var eligText = r.eligible
     ? '✓ Califica: ' + r.eligType
     : '⚠ Posiblemente no cumple los requisitos mínimos. Le recomendamos una consulta.';
-  elig.style.color = r.eligible ? '#25D366' : '#cc8833';
+  setText('r2_elig', eligText);
+  el('r2_elig').style.color = r.eligible ? '#25D366' : '#cc8833';
   setText('r2_years',  r.yrs + ' años de servicio calculados');
   setText('r2_global', usd(r.fondoGlobal));
   setText('r2_pension', usd(r.pension) + '/mes');
   showResult('result-detallada');
-}
-
-/* ── Form 3: Enviar Mi Caso ── */
-function buildYears() {
-  var c = el('f3_years');
-  if (c.children.length) return;
-  var yr = new Date().getFullYear();
-  for (var i = 0; i < 5; i++) {
-    var y = yr - 1 - i;
-    var d = document.createElement('div');
-    d.className = 'year-block';
-    d.innerHTML =
-      '<div class="year-header"><span class="year-badge">Año ' + y + '</span></div>' +
-      '<div class="form-row cols3">' +
-        '<div class="fgroup"><label>Sueldo base</label><input type="number" class="yr-base" placeholder="0.00" min="0" step="0.01"></div>' +
-        '<div class="fgroup"><label>Comisiones</label><input type="number" class="yr-com" placeholder="0.00" min="0" step="0.01"></div>' +
-        '<div class="fgroup"><label>Horas extra</label><input type="number" class="yr-ext" placeholder="0.00" min="0" step="0.01"></div>' +
-      '</div>';
-    c.appendChild(d);
-  }
-}
-
-function submitCaso(e) {
-  e.preventDefault();
-  if (!validate('form-caso-form')) return;
-  if (!validateField('f3_cedula', /^\d{10}$/)) return;
-  if (!validateField('f3_ruc', /^\d{13}$/)) return;
-  var breakdown = [];
-  document.querySelectorAll('#f3_years .year-block').forEach(function(b) {
-    breakdown.push({
-      base: parseFloat(b.querySelector('.yr-base').value) || 0,
-      com:  parseFloat(b.querySelector('.yr-com').value)  || 0,
-      ext:  parseFloat(b.querySelector('.yr-ext').value)  || 0
-    });
-  });
-  var data = {
-    cedula: val('f3_cedula').trim(),
-    email:  val('f3_email').trim(),
-    ruc:    val('f3_ruc').trim(),
-    breakdown: breakdown,
-    docs: {
-      contrato:  val('f3_contrato'),
-      roles:     val('f3_roles'),
-      aviso:     val('f3_aviso'),
-      finiquito: val('f3_finiquito')
-    }
-  };
-  save(3, data);
-  if (typeof trackFormComplete === 'function') trackFormComplete();
-  el('form-caso-fields').style.display = 'none';
-  showResult('result-caso');
 }
 
 /* ── Scroll reveal (single shared observer) ── */
@@ -219,7 +198,7 @@ function observe(selector, onIntersect, options) {
       if (entry.isIntersecting) { onIntersect(entry.target, io); io.unobserve(entry.target); }
     });
   }, options);
-  document.querySelectorAll(selector).forEach(function(el) { io.observe(el); });
+  document.querySelectorAll(selector).forEach(function(e) { io.observe(e); });
 }
 
 function initReveal() {
@@ -231,12 +210,14 @@ function initCounters() {
     var end = parseFloat(target.dataset.target);
     var pfx = target.dataset.prefix || '';
     var sfx = target.dataset.suffix || '';
-    var steps = 1400 / 16, cur = 0, inc = end / steps;
-    var t = setInterval(function() {
-      cur = Math.min(cur + inc, end);
-      target.textContent = pfx + Math.round(cur) + sfx;
-      if (cur >= end) clearInterval(t);
-    }, 16);
+    var dur = 1400, start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      var prog = Math.min((ts - start) / dur, 1);
+      target.textContent = pfx + Math.round(prog * end) + sfx;
+      if (prog < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
   }, {threshold: 0.5});
 }
 
@@ -253,7 +234,8 @@ document.addEventListener('DOMContentLoaded', function() {
       ticking = true;
     }
   }, {passive: true});
-  buildYears();
+  demoNavBtns = document.querySelectorAll('.demo-nav-btn');
+  initVersion('form-minima');
   initReveal();
   initCounters();
   if (typeof trackPageView === 'function') trackPageView();
