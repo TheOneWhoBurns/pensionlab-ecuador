@@ -1200,9 +1200,10 @@ h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; }
   font-size: 13px;
   font-weight: 300;
   color: var(--text-2);
-  transition: transform 0.3s;
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  transform: translateY(110%);
 }
-.cookie-banner.hidden { transform: translateY(110%); }
+.cookie-banner.visible { transform: translateY(0); }
 .cookie-text { max-width: 60ch; line-height: 1.5; }
 .cookie-text a { color: var(--gold); text-decoration: underline; text-underline-offset: 2px; }
 .cookie-actions { display: flex; gap: 12px; flex-shrink: 0; }
