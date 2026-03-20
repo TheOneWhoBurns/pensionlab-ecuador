@@ -1,8 +1,8 @@
 const { test, expect, devices } = require('@playwright/test');
 
-test.describe('Mobile Layout', () => {
-  test.use({ ...devices['Pixel 5'] });
+test.use({ ...devices['Pixel 5'] });
 
+test.describe('Mobile Layout', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
   });
