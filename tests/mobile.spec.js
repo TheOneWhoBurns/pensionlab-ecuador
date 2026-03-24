@@ -21,8 +21,8 @@ test.describe('Mobile Layout', () => {
   });
 
   test('form is single column on mobile', async ({ page }) => {
-    await expect(page.locator('#form-minima')).toBeVisible();
-    const formWidth = await page.locator('#form-minima').evaluate(el => el.offsetWidth);
+    await expect(page.locator('#formularios')).toBeVisible();
+    const formWidth = await page.locator('#formularios').evaluate(el => el.offsetWidth);
     const viewportWidth = page.viewportSize().width;
     expect(formWidth).toBeLessThanOrEqual(viewportWidth);
   });

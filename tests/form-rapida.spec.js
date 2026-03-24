@@ -1,10 +1,9 @@
 const { test, expect } = require('@playwright/test');
 
-test.describe('Form B: Estimación Rápida', () => {
+test.describe('Form: Estimación Rápida', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
-    await page.evaluate(() => switchVersion('form-rapida'));
-    await expect(page.locator('#form-rapida')).toBeVisible();
+    await expect(page.locator('#formularios')).toBeVisible();
   });
 
   test('submit without fields shows validation errors', async ({ page }) => {

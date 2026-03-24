@@ -25,19 +25,6 @@
   </div>
 
   <div class="sidebar-section">
-    <div class="sidebar-section-label">Versiones del formulario</div>
-    <button class="sidebar-link form-link" id="sb-a" onclick="switchVersion('form-minima')">
-      <span class="sidebar-link-dot"></span> A &mdash; Captura directa
-    </button>
-    <button class="sidebar-link form-link" id="sb-b" onclick="switchVersion('form-rapida')">
-      <span class="sidebar-link-dot"></span> B &mdash; Con estimación
-    </button>
-    <button class="sidebar-link form-link" id="sb-c" onclick="switchVersion('form-detallada')">
-      <span class="sidebar-link-dot"></span> C &mdash; Análisis completo
-    </button>
-  </div>
-
-  <div class="sidebar-section">
     <div class="sidebar-section-label">Información</div>
     <button class="sidebar-link" onclick="jumpTo('eligibility')">¿Califico?</button>
     <button class="sidebar-link" onclick="jumpTo('servicios')">Servicios</button>
@@ -117,69 +104,11 @@
   </div>
 </section>
 
-<!-- DEMO HEADER -->
-<section class="demo-header" id="formularios">
-  <div class="demo-header-inner">
-    <div class="demo-label">Demo de captura &middot; 3 enfoques de conversión</div>
-    <h2 class="demo-title">Tres versiones del mismo formulario.</h2>
-    <p class="demo-sub">Cada variante captura al mismo cliente en un estadio diferente de la decisión. La versión A dispara el lead de inmediato. La B ofrece valor antes de pedir datos. La C califica al prospecto con precisión actuarial.</p>
-    <div class="demo-nav">
-      <button class="demo-nav-btn active" onclick="switchVersion('form-minima')">A &mdash; Captura directa</button>
-      <button class="demo-nav-btn" onclick="switchVersion('form-rapida')">B &mdash; Con estimación</button>
-      <button class="demo-nav-btn" onclick="switchVersion('form-detallada')">C &mdash; Análisis completo</button>
-    </div>
-  </div>
-</section>
-
-<!-- FORM A: Captura Mínima -->
-<section class="form-section form-version-a" id="form-minima">
+<!-- FORM SECTION -->
+<section class="form-section" id="formularios">
   <div class="form-inner">
-    <div class="version-tag">A</div>
-    <div class="version-philosophy">Captura directa &mdash; fricción mínima</div>
-    <h2 class="form-head">¿Trabajó 20+ años con el mismo empleador? <span>Le llamamos hoy.</span></h2>
-    <p class="form-intro">Solo necesitamos su nombre y WhatsApp. Un especialista le contacta en menos de 48 horas para evaluar su caso sin costo.</p>
-
-    <form id="form-minima-form" novalidate>
-      <div class="form-block">
-        <div class="fgroup" style="margin-bottom:12px;">
-          <label>Nombre completo</label>
-          <input type="text" id="fa_name" required placeholder="Sus nombres y apellidos">
-        </div>
-        <div class="fgroup">
-          <label>WhatsApp</label>
-          <input type="tel" id="fa_wa" required placeholder="+593 99 000 0000">
-        </div>
-        <div class="honeypot"><input type="text" id="hp0" tabindex="-1" autocomplete="off"></div>
-      </div>
-      <button type="button" class="btn-gold" style="width:100%;justify-content:center;" onclick="submitMinima()">
-        Verificar Mi Derecho &mdash; Gratis &rarr;
-      </button>
-      <p class="form-note">Consulta gratuita. Sin compromiso. Le contactamos en 48 horas.</p>
-    </form>
-
-    <div class="result-panel" id="result-minima">
-      <div class="complete-box">
-        <div class="complete-check">
-          <svg viewBox="0 0 24 24" width="28" height="28"><polyline points="4,13 9,18 20,7" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <h3>Recibido. Le contactamos pronto.</h3>
-        <p>Un especialista en jubilación patronal revisará su caso y se comunicará con usted por WhatsApp en las próximas 48 horas.</p>
-        <button class="btn-outline-wa" onclick="openWhatsApp('resultA')" style="margin:0 auto;">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.522 5.857L0 24l6.335-1.652A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.82c-1.91 0-3.72-.51-5.32-1.47l-.38-.23-3.96 1.04 1.06-3.86-.25-.4A9.8 9.8 0 012.18 12c0-5.42 4.4-9.82 9.82-9.82 5.42 0 9.82 4.4 9.82 9.82 0 5.42-4.4 9.82-9.82 9.82z"/></svg>
-          Escribir ahora por WhatsApp
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FORM B: Estimación con valor -->
-<section class="form-section form-version-b" id="form-rapida">
-  <div class="form-inner">
-    <div class="version-tag version-tag-b">B</div>
-    <div class="version-philosophy">Con estimación de valor &mdash; 4 campos</div>
     <h2 class="form-head">Calcule su jubilación patronal <span>en 30 segundos.</span></h2>
-    <p class="form-intro">Ingrese cuatro datos y le mostramos al instante el rango estimado de lo que podría reclamar. Luego decidimos juntos si avanzamos.</p>
+    <p class="form-intro">Ingrese sus datos y le mostramos al instante el rango estimado de lo que podría reclamar. Luego decidimos juntos si avanzamos.</p>
 
     <form id="form-rapida-form" novalidate>
       <div class="form-block">
@@ -216,129 +145,10 @@
       <div class="result-range" id="r1_range">—</div>
       <div class="result-disclaimer">Estimación referencial basada en datos aproximados. No constituye asesoría legal.</div>
       <div class="result-actions">
-        <button class="btn-gold" onclick="jumpTo('form-detallada')">Obtener estimación más precisa &rarr;</button>
+        <button class="btn-gold" onclick="openWhatsApp('result1')">Hablar con un especialista &rarr;</button>
         <button class="btn-outline-wa" onclick="openWhatsApp('result1')">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.522 5.857L0 24l6.335-1.652A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.82c-1.91 0-3.72-.51-5.32-1.47l-.38-.23-3.96 1.04 1.06-3.86-.25-.4A9.8 9.8 0 012.18 12c0-5.42 4.4-9.82 9.82-9.82 5.42 0 9.82 4.4 9.82 9.82 0 5.42-4.4 9.82-9.82 9.82z"/></svg>
           Hablar por WhatsApp
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FORM C: Análisis Completo -->
-<section class="form-section form-version-c" id="form-detallada">
-  <div class="form-inner">
-    <div class="version-tag version-tag-c">C</div>
-    <div class="version-philosophy">Análisis completo &mdash; lead cualificado</div>
-    <h2 class="form-head">Cálculo actuarial <span>de su caso concreto.</span></h2>
-    <p class="form-intro">Con sus fechas exactas y datos laborales calculamos el monto preciso en ambas modalidades: fondo global y pensión mensual vitalicia.</p>
-
-    <form id="form-detallada-form" novalidate>
-      <div class="form-block">
-        <div class="form-block-title">Datos personales</div>
-        <div class="form-row cols2">
-          <div class="fgroup">
-            <label>Salario mensual (USD)</label>
-            <input type="number" id="f2_salary" required min="1" step="0.01" placeholder="Ej: 1200">
-          </div>
-          <div class="fgroup">
-            <label>Fecha de nacimiento</label>
-            <input type="date" id="f2_dob" required>
-          </div>
-        </div>
-        <div class="form-row cols2">
-          <div class="fgroup">
-            <label>Sexo</label>
-            <select id="f2_sexo" required>
-              <option value="">Seleccione...</option>
-              <option value="M">Masculino</option>
-              <option value="F">Femenino</option>
-            </select>
-          </div>
-          <div class="fgroup">
-            <label>Nombre del empleador</label>
-            <input type="text" id="f2_employer" required placeholder="Razón social de la empresa">
-          </div>
-        </div>
-      </div>
-      <div class="form-block">
-        <div class="form-block-title">Datos laborales</div>
-        <div class="form-row cols2">
-          <div class="fgroup">
-            <label>Fecha de ingreso</label>
-            <input type="date" id="f2_ingreso" required>
-          </div>
-          <div class="fgroup">
-            <label>Fecha de salida</label>
-            <input type="date" id="f2_salida" required>
-          </div>
-        </div>
-        <div class="checkbox-row">
-          <input type="checkbox" id="f2_still" onchange="toggleStillWorking()">
-          <label for="f2_still">Aún trabajo ahí</label>
-        </div>
-        <div class="form-row cols2" style="margin-top:12px;">
-          <div class="fgroup">
-            <label>Motivo de salida</label>
-            <select id="f2_motivo" required>
-              <option value="">Seleccione...</option>
-              <option value="despido">Despido intempestivo</option>
-              <option value="renuncia">Renuncia voluntaria</option>
-              <option value="acuerdo">Acuerdo mutuo</option>
-              <option value="jubilacion">Jubilación voluntaria</option>
-              <option value="otro">Otro</option>
-            </select>
-          </div>
-          <div class="fgroup">
-            <label>Fondo de reserva</label>
-            <select id="f2_fondo" required>
-              <option value="">Seleccione...</option>
-              <option value="depositado">Depositado en IESS</option>
-              <option value="mensual">Pagado mensualmente</option>
-              <option value="nose">No sé</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="fgroup">
-            <label>Modalidad preferida</label>
-            <select id="f2_modalidad">
-              <option value="nose">No sé aún</option>
-              <option value="pension">Pensión mensual vitalicia</option>
-              <option value="global">Fondo global — pago único</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="honeypot"><input type="text" id="hp2" tabindex="-1" autocomplete="off"></div>
-      <button type="button" class="btn-gold" style="width:100%;justify-content:center;" onclick="submitDetallada(event)">
-        Calcular Estimación Detallada &rarr;
-      </button>
-      <p class="form-note">Estimación referencial. No constituye asesoría legal.</p>
-    </form>
-
-    <div class="result-panel" id="result-detallada">
-      <div class="result-label" id="r2_years">—</div>
-      <div id="r2_elig" style="font-size:13px;font-weight:700;margin:8px 0;"></div>
-      <div class="result-modalities">
-        <div class="mod-card">
-          <div class="mod-label">Fondo global (pago único)</div>
-          <div class="mod-value" id="r2_global">—</div>
-          <div class="mod-desc">Monto total estimado en un solo pago</div>
-        </div>
-        <div class="mod-card featured">
-          <div class="mod-label">Pensión mensual vitalicia</div>
-          <div class="mod-value" id="r2_pension">—</div>
-          <div class="mod-desc">Ingreso mensual estimado de por vida</div>
-        </div>
-      </div>
-      <div class="result-disclaimer">Estimación referencial. El cálculo definitivo requiere análisis actuarial completo. No constituye asesoría legal.</div>
-      <div class="result-actions">
-        <button class="btn-gold" onclick="openWhatsApp('result2')">Hablar con un especialista &rarr;</button>
-        <button class="btn-outline-wa" onclick="openWhatsApp('result2')">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.522 5.857L0 24l6.335-1.652A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.82c-1.91 0-3.72-.51-5.32-1.47l-.38-.23-3.96 1.04 1.06-3.86-.25-.4A9.8 9.8 0 012.18 12c0-5.42 4.4-9.82 9.82-9.82 5.42 0 9.82 4.4 9.82 9.82 0 5.42-4.4 9.82-9.82 9.82z"/></svg>
-          WhatsApp
         </button>
       </div>
     </div>
