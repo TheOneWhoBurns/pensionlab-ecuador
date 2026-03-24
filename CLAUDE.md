@@ -1,17 +1,18 @@
 # PensionLab
 
-Static website deployed on AWS EC2 (t2.micro).
+Static website hosted on AWS (S3 + CloudFront).
 
 ## Infrastructure
 
-- **Hosting**: AWS EC2 t2.micro instance
-- **Deployment**: rsync over SSH from GitHub Actions
-- **Serving**: Static files (HTML/CSS/JS) served via web server on EC2
+- **Domain**: `pensionlabec.com` (registered via OpenSRS/Zoho)
+- **DNS**: AWS Route 53 (Hosted Zone `Z09804922IETK9KPXK5QL`)
+- **Hosting**: S3 bucket `pensionlabec.com` with static website hosting
+- **CDN**: CloudFront distribution `EV1SL8GAZMRQ6` (`d2rh96afr6oqbr.cloudfront.net`)
+- **SSL**: ACM certificate for `pensionlabec.com` + `*.pensionlabec.com`
+- **Email**: Zoho Mail (MX, SPF, DKIM, DMARC records configured in Route 53)
 - **GitHub Secrets required**:
-  - `EC2_SSH_KEY` — private key for SSH access
-  - `EC2_HOST` — EC2 public IP/hostname
-  - `EC2_USER` — SSH user (e.g. `ec2-user` or `ubuntu`)
-  - `DEPLOY_PATH` — absolute path on EC2 where files are served from
+  - `AWS_ACCESS_KEY_ID` — IAM user `Github-CI` access key
+  - `AWS_SECRET_ACCESS_KEY` — IAM user `Github-CI` secret key
 
 ## CI/CD Pipeline
 
@@ -20,9 +21,9 @@ Defined in `.github/workflows/ci.yml`. Triggers on push to `main` and PRs to `ma
 **Two jobs:**
 
 1. **test** — Runs the full Playwright QA suite on ubuntu-latest (Node 20)
-2. **deploy** — Runs only on push to `main`, after tests pass. Uses rsync to sync the repo to EC2 via SSH, excluding dev-only files (tests, node_modules, .github, etc.)
+2. **deploy** — Runs only on push to `main`, after tests pass. Syncs files to S3 and invalidates CloudFront cache.
 
-Deployments are automatic: merge to `main` → tests pass → deploy to EC2.
+Deployments are automatic: merge to `main` → tests pass → deploy to S3 + CloudFront.
 
 ## QA Pipeline
 
@@ -30,10 +31,7 @@ Playwright test suite in `/tests/` with 8 spec files:
 
 - `nav.spec.js` — navigation, sticky nav, sidebar, CTA scrolling
 - `cookie-consent.spec.js` — cookie consent banner
-- `form-minima.spec.js` — minimal form validation, submission, localStorage, honeypot
-- `form-rapida.spec.js` — quick form
-- `form-detallada.spec.js` — detailed form
-- `form-version-switcher.spec.js` — form version switching
+- `form-rapida.spec.js` — estimation form validation, submission, calculator
 - `whatsapp.spec.js` — WhatsApp integration
 - `mobile.spec.js` — mobile-specific tests (Pixel 5 viewport)
 
