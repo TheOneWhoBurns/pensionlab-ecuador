@@ -1,4 +1,4 @@
-var WHATSAPP_NUMBER = '593990000000';
+var WHATSAPP_NUMBER = '593960854100';
 var WHATSAPP_MSG = 'Hola, quiero consultar sobre mi jubilación patronal.';
 
 var leadData = {};
@@ -18,12 +18,6 @@ function saveLead(tier, data) {
   if (typeof trackLead === 'function') trackLead(data);
 }
 
-/* ── Calculator ── */
-function calcRapida(years, salary) {
-  var a = salary * 12, fr = salary * years;
-  return { low: fr * 0.30 + 0.05 * a * years, high: fr + 0.05 * a * years };
-}
-
 /* ── Form helpers ── */
 function validate(id) {
   var form = el(id), ok = true;
@@ -32,18 +26,6 @@ function validate(id) {
     if (!f.value.trim()) { f.classList.add('error'); ok = false; }
   });
   return ok;
-}
-
-function showResult(id) {
-  var panel = el(id);
-  panel.style.cssText += ';display:block;overflow:hidden;transition:max-height 0.6s ease;max-height:0';
-  requestAnimationFrame(function() {
-    panel.style.maxHeight = panel.scrollHeight + 'px';
-    panel.addEventListener('transitionend', function handler() {
-      panel.removeEventListener('transitionend', handler);
-      panel.scrollIntoView({behavior:'smooth', block:'nearest'});
-    });
-  });
 }
 
 /* ── Sidebar ── */
@@ -67,18 +49,11 @@ function openWhatsApp(src) {
   window.open('https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(WHATSAPP_MSG), '_blank');
 }
 
-/* ── Form: Estimación Rápida ── */
-function submitRapida(e) {
-  e.preventDefault();
-  if (!validate('form-rapida-form') || isHoneypot('hp1')) return;
-  var years  = parseFloat(val('f1_years'))  || 0;
-  var salary = parseFloat(val('f1_salary')) || 0;
-  if (years < 1 || salary < 1) return;
-  var data = { name: val('f1_name').trim(), whatsapp: val('f1_wa').trim(), years: years, salary: salary };
+/* ── Form: Consulta ── */
+function submitConsulta(e) {
+  if (!validate('form-rapida-form')) { e.preventDefault(); return; }
+  var data = { name: val('f1_name').trim(), email: val('f1_email').trim(), whatsapp: val('f1_wa').trim(), years: parseFloat(val('f1_years')) || 0 };
   saveLead(1, data);
-  var r = calcRapida(years, salary);
-  setText('r1_range', usd(r.low) + ' — ' + usd(r.high));
-  showResult('result-rapida');
 }
 
 /* ── Scroll reveal (single shared observer) ── */

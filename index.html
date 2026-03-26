@@ -82,51 +82,43 @@
 <!-- FORM SECTION -->
 <section class="form-section" id="formularios">
   <div class="form-inner">
-    <h2 class="form-head">Calcule su jubilación patronal <span>en 30 segundos.</span></h2>
-    <p class="form-intro">Ingrese sus datos y le mostramos al instante el rango estimado de lo que podría reclamar. Luego decidimos juntos si avanzamos.</p>
+    <h2 class="form-head">Consulte sobre su jubilación patronal.</h2>
+    <p class="form-intro">Complete el formulario y un especialista se pondrá en contacto con usted en menos de 24 horas.</p>
 
-    <form id="form-rapida-form" novalidate>
+    <form id="form-rapida-form" action="https://formsubmit.co/info@pensionlabec.com" method="POST" onsubmit="submitConsulta(event)">
+      <!-- FormSubmit config -->
+      <input type="hidden" name="_subject" value="Nueva consulta de jubilación patronal - PensionLab">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://pensionlabec.com">
+      <input type="hidden" name="_template" value="table">
       <div class="form-block">
         <div class="form-row cols2">
           <div class="fgroup">
             <label>Nombre completo</label>
-            <input type="text" id="f1_name" required placeholder="Sus nombres y apellidos">
+            <input type="text" name="nombre" id="f1_name" required placeholder="Sus nombres y apellidos">
           </div>
           <div class="fgroup">
-            <label>WhatsApp</label>
-            <input type="tel" id="f1_wa" required placeholder="+593 99 000 0000">
+            <label>Correo electrónico</label>
+            <input type="email" name="correo" id="f1_email" required placeholder="su@correo.com">
           </div>
         </div>
         <div class="form-row cols2">
           <div class="fgroup">
-            <label>Años con este empleador</label>
-            <input type="number" id="f1_years" required min="1" max="60" placeholder="Ej: 22">
+            <label>WhatsApp</label>
+            <input type="tel" name="whatsapp" id="f1_wa" required placeholder="+593 96 085 4100">
           </div>
           <div class="fgroup">
-            <label>Salario mensual aprox. (USD)</label>
-            <input type="number" id="f1_salary" required min="1" step="0.01" placeholder="Ej: 1200">
+            <label>Años con este empleador</label>
+            <input type="number" name="anios_empleador" id="f1_years" required min="1" max="60" placeholder="Ej: 22">
           </div>
         </div>
-        <div class="honeypot"><input type="text" id="hp1" tabindex="-1" autocomplete="off"></div>
+        <div class="honeypot"><input type="text" name="_honey" tabindex="-1" autocomplete="off"></div>
       </div>
-      <button type="button" class="btn-gold" style="width:100%;justify-content:center;" onclick="submitRapida(event)">
-        Calcular Mi Estimación &rarr;
+      <button type="submit" class="btn-gold" style="width:100%;justify-content:center;">
+        Enviar Consulta &rarr;
       </button>
-      <p class="form-note">Estimación referencial. No constituye asesoría legal.</p>
+      <p class="form-note">Sus datos serán tratados con absoluta confidencialidad.</p>
     </form>
-
-    <div class="result-panel" id="result-rapida">
-      <div class="result-label">Su jubilación patronal podría estar entre</div>
-      <div class="result-range" id="r1_range">—</div>
-      <div class="result-disclaimer">Estimación referencial basada en datos aproximados. No constituye asesoría legal.</div>
-      <div class="result-actions">
-        <button class="btn-gold" onclick="openWhatsApp('result1')">Hablar con un especialista &rarr;</button>
-        <button class="btn-outline-wa" onclick="openWhatsApp('result1')">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.522 5.857L0 24l6.335-1.652A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.82c-1.91 0-3.72-.51-5.32-1.47l-.38-.23-3.96 1.04 1.06-3.86-.25-.4A9.8 9.8 0 012.18 12c0-5.42 4.4-9.82 9.82-9.82 5.42 0 9.82 4.4 9.82 9.82 0 5.42-4.4 9.82-9.82 9.82z"/></svg>
-          Hablar por WhatsApp
-        </button>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -276,8 +268,10 @@
   <h2 class="contact-head">¿Prefiere hablar con un especialista?<br><span>Estamos disponibles para usted.</span></h2>
   <p class="contact-sub">Si prefiere atención directa antes de llenar el formulario, contáctenos por cualquiera de estos canales y un especialista le atenderá en menos de 24 horas.</p>
   <div class="contact-grid">
-    <div class="contact-item"><div class="contact-label">Teléfono / WhatsApp</div><div class="contact-val">+593 99 000 0000</div></div>
-    <div class="contact-item"><div class="contact-label">Correo electrónico</div><div class="contact-val">contacto@pensionlab.ec</div></div>
+    <div class="contact-item"><div class="contact-label">Teléfono / WhatsApp</div><div class="contact-val"><a href="https://wa.me/593960854100?text=Hola%2C%20quiero%20consultar%20sobre%20mi%20jubilaci%C3%B3n%20patronal." style="color:inherit;text-decoration:none;">+593 96 085 4100</a></div></div>
+    <div class="contact-item"><div class="contact-label">Correo general</div><div class="contact-val">info@pensionlabec.com</div></div>
+    <div class="contact-item"><div class="contact-label">Gerencia</div><div class="contact-val">gerencia@pensionlabec.com</div></div>
+    <div class="contact-item"><div class="contact-label">Comercial</div><div class="contact-val">comercial@pensionlabec.com</div></div>
     <div class="contact-item"><div class="contact-label">Dirección</div><div class="contact-val">Quito, Ecuador</div></div>
     <div class="contact-item"><div class="contact-label">Atención</div><div class="contact-val">Lunes a viernes &middot; 09h00&ndash;18h00</div></div>
   </div>
@@ -291,7 +285,7 @@
     <a href="#">Política de privacidad</a>
     <a href="#">Términos de uso</a>
   </div>
-  <span class="footer-legal">Los valores calculados son estimaciones referenciales. Cada caso es único. Esta página no constituye asesoría legal.</span>
+  <span class="footer-legal">PensionLab Ecuador es una empresa privada de servicios jurídicos y actuariales. No tenemos relación, afiliación ni vínculo institucional alguno con el Instituto Ecuatoriano de Seguridad Social (IESS) ni con ninguna entidad pública. Los valores mostrados en esta página son estimaciones referenciales y no constituyen asesoría legal. Cada caso es único y está sujeto a análisis particular. El uso de este sitio no establece una relación abogado-cliente.</span>
 </footer>
 
 <!-- FLOATING WHATSAPP -->
